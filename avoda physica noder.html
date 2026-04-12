@@ -164,7 +164,7 @@
     questionEl.textContent = q.question;
     q.answers.forEach((answer, index) => {
         const button = document.createElement('button');
-        button.innerHTML = answer;  // <-- use innerHTML instead of textContent
+        button.innerHTML = answer; 
         button.addEventListener('click', () => selectAnswer(index));
         answersEl.appendChild(button);
     });
@@ -175,7 +175,7 @@ function loadQuestion() {
     questionEl.textContent = q.question;
     q.answers.forEach((answer, index) => {
         const button = document.createElement('button');
-        // wrap complex math in a span with CSS for LTR
+      
         button.innerHTML = `<span style="direction:ltr; display:inline-block;">${answer}</span>`;
         button.addEventListener('click', () => selectAnswer(index));
         answersEl.appendChild(button);
