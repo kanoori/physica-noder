@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חידון אופטיקה גאומטרית</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .quiz-container {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 25px;
+            border-radius: 12px;
+            width: 600px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .answers button {
+            display: block;
+            width: 100%;
+            margin: 6px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .answers button:hover {
+            background-color: #3b82f6;
+            color: white;
+        }
+        #next-btn, #restart-btn {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            background-color: #22c55e;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #restart-btn {
+            background-color: #f59e0b;
+            display: none;
+        }
+        #result {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>חידון אופטיקה גאומטרית</h1>
+    <div id="quiz">
+        <div class="question" id="question"></div>
+        <div class="answers" id="answers"></div>
+        <button id="next-btn">השאלה הבאה</button>
+        <button id="restart-btn">התחל מחדש</button>
+        <div id="result"></div>
+    </div>
+</div>
+
+<script>
+    const allQuestions = [
+{ 
+    question: "מהו חוק ההחזרה?", 
+    answers: [
+        "זווית הפגיעה שווה לזווית ההחזרה",
+        "∮C f(z) dz = 2πi ∑ Res(f, ak)",
+        "iħ ∂Ψ/∂t = ĤΨ",
+        "∇·E = ρ/ε₀"
+    ], 
+    correct: 0 
+},
+        { question: "עדשה קמורה נקראת גם:", answers: ["עדשה מפזרת", "עדשה מרכזת", "מראה מישורית", "עדשה קעורה"], correct: 1 },
+        { question: "מה קורה למהירות האור במעבר מאוויר למים?", answers: ["גדלה", "קטנה", "לא משתנה", "נעלמת"], correct: 1 },
+        { question: "מראה קעורה היא מראה:", answers: ["מפזרת", "מרכזת", "שקופה", "מישורית"], correct: 1 },
+        { question: "מקדם השבירה של אוויר הוא:", answers: ["0", "1", "2", "תלוי בחומר"], correct: 1 },
+        { question: "כאשר קרן פוגעת בניצב למשטח – זווית השבירה היא:", answers: ["90°", "0°", "45°", "תלויה במקדם"], correct: 1 },
+        { question: "עדשה קעורה היא עדשה:", answers: ["מרכזת", "מפזרת", "מחזירה", "אופטית"], correct: 1 },
+        { question: "מרחק מוקד מסומן באות:", answers: ["f", "d", "n", "v"], correct: 0 },
+        { question: "נוסחת העדשה הדקה היא:", answers: ["1/f = 1/do + 1/di", "e^{ix} = cos(x) + i sin(x)", "ζ(s) = ∑_{n=1}^{∞} 1/n^s", "ℒ{f(t)} = ∫_0^{∞} e^{-st} f(t) dt"], correct: 0 },
+        { question: "תופעת השבירה מתרחשת בגלל שינוי ב:", answers: ["צבע", "מהירות", "אנרגיה", "מסה"], correct: 1 },
+        { question: "קרן פוגעת במראה בזווית של 30°. מהי זווית ההחזרה?", answers: ["30°", "60°", "0°", "15°"], correct: 0 },
+        { question: "קרן פוגעת בזווית 45°. מהי זווית ההחזרה?", answers: ["45°", "90°", "0°", "22.5°"], correct: 0 },
+        { question: "קרן פוגעת בזווית 70°. מהי זווית ההחזרה?", answers: ["20°", "70°", "140°", "35°"], correct: 1 },
+        { question: "זווית ההחזרה תמיד שווה ל:", answers: ["חצי מזווית הפגיעה", "כפול מזווית הפגיעה", "זווית הפגיעה", "0"], correct: 2 },
+        { question: "אם זווית ההחזרה היא 25°, מהי זווית הפגיעה?", answers: ["25°", "50°", "75°", "12.5°"], correct: 0 },
+        { question: "קרן עוברת מאוויר (n=1) למים (n=1.33) בזווית פגיעה 30°. האם הזווית תשבר לכיוון הנורמל?", answers: ["כן", "לא", "לא משתנה", "תלוי בעוצמה"], correct: 0 },
+        { question: "אם n1=1, n2=2 וזווית הפגיעה 30°, זווית השבירה תהיה:", answers: ["גדולה מ-30°", "קטנה מ-30°", "שווה ל-30°", "90°"], correct: 1 },
+        { question: "מעבר מזכוכית לאוויר יגרום לזווית השבירה להיות:", answers: ["קטנה יותר", "גדולה יותר", "0", "שווה"], correct: 1 },
+        { question: "אם זווית הפגיעה היא 0°, זווית השבירה היא:", answers: ["0°", "90°", "45°", "תלויה במקדם"], correct: 0 },
+{ 
+    question: "חוק סנל הוא:", 
+    answers: [
+        "n1*sinθ1 = n2*sinθ2",
+        "∮C f(z) dz = 2πi ∑ Res(f, ak)",
+        "iħ ∂Ψ/∂t = -(ħ²/2m)∇²Ψ + VΨ",
+        "∫_{-∞}^{∞} e^(-x²) dx = √π"
+    ], 
+    correct: 0 
+},
+        { question: "מוקד של מראה קעורה נמצא:", answers: ["מאחורי המראה", "לפני המראה", "במרכז", "באינסוף"], correct: 1 },
+        { question: "הדמות במראה מישורית היא:", answers: ["אמיתית", "מדומה", "הפוכה", "מוקטנת"], correct: 1 },
+        { question: "מקדם שבירה גדול יותר פירושו:", answers: ["מהירות גדולה יותר", "מהירות קטנה יותר", "אין קשר", "אור חזק יותר"], correct: 1 },
+        { question: "יחידות מרחק מוקד הן:", answers: ["מטר", "שנייה", "ניוטון", "וולט"], correct: 0 },
+        { question: "זווית קריטית מתרחשת כאשר:", answers: ["יש החזרה מלאה", "אין שבירה", "האור נעצר", "יש פיזור"], correct: 0 },
+        { question: "החזרה מלאה מתרחשת כאשר מעבר הוא מ:", answers: ["אוויר למים", "מים לאוויר", "אוויר לריק", "ריק לאוויר"], correct: 1 },
+        { question: "אם n1>n2 אז הקרן תישבר:", answers: ["מהנורמל", "אל הנורמל", "לא תישבר", "תיעלם"], correct: 0 },
+        { question: "דמות אמיתית ניתן להקרין על:", answers: ["מסך", "מראה", "אוויר", "עדשה"], correct: 0 },
+        { question: "במראה מישורית גודל הדמות הוא:", answers: ["קטן יותר", "גדול יותר", "שווה לגוף", "אפס"], correct: 2 },
+        { question: "הנורמל הוא קו:", answers: ["מקביל למשטח", "מאונך למשטח", "אלכסוני", "עקום"], correct: 1 }
+    ];
+
+    let questions = [];
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById('question');
+    const answersEl = document.getElementById('answers');
+    const nextBtn = document.getElementById('next-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const resultEl = document.getElementById('result');
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function startQuiz() {
+        questions = shuffle([...allQuestions]).slice(0, 10);
+        currentQuestion = 0;
+        score = 0;
+        resultEl.textContent = '';
+        restartBtn.style.display = 'none';
+        questionEl.style.display = 'block';
+        nextBtn.style.display = 'block';
+        loadQuestion();
+    }
+    function loadQuestion() {
+    resetState();
+    let q = questions[currentQuestion];
+    questionEl.textContent = q.question;
+    q.answers.forEach((answer, index) => {
+        const button = document.createElement('button');
+        button.innerHTML = answer; 
+        button.addEventListener('click', () => selectAnswer(index));
+        answersEl.appendChild(button);
+    });
+}
+function loadQuestion() {
+    resetState();
+    let q = questions[currentQuestion];
+    questionEl.textContent = q.question;
+    q.answers.forEach((answer, index) => {
+        const button = document.createElement('button');
+      
+        button.innerHTML = `<span style="direction:ltr; display:inline-block;">${answer}</span>`;
+        button.addEventListener('click', () => selectAnswer(index));
+        answersEl.appendChild(button);
+    });
+}
+    function resetState() {
+        answersEl.innerHTML = '';
+    }
+
+    function selectAnswer(index) {
+        const correct = questions[currentQuestion].correct;
+        if (index === correct) score++;
+
+        Array.from(answersEl.children).forEach((button, i) => {
+            button.disabled = true;
+            if (i === correct) button.style.backgroundColor = 'green';
+            else if (i === index) button.style.backgroundColor = 'red';
+        });
+    }
+
+    nextBtn.addEventListener('click', () => {
+        currentQuestion++;
+        if (currentQuestion < questions.length) loadQuestion();
+        else showResult();
+    });
+
+    function showResult() {
+        questionEl.style.display = 'none';
+        nextBtn.style.display = 'none';
+        resultEl.textContent = `הציון שלך: ${score} מתוך 10`;
+        restartBtn.style.display = 'block';
+    }
+
+    restartBtn.addEventListener('click', startQuiz);
+
+    startQuiz();
+</script>
+
+</body>
+</html>
