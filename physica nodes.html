@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
+            background: linear-gradient(to right, #abbad6, #a9b8d3);
             color: white;
             display: flex;
             justify-content: center;
@@ -80,54 +80,182 @@
 
 <script>
     const allQuestions = [
-{ 
-    question: "מהו חוק ההחזרה?", 
+{
+    question: "מה קובע חוק ההחזרה של אור?",
     answers: [
-        "זווית הפגיעה שווה לזווית ההחזרה",
         "∮C f(z) dz = 2πi ∑ Res(f, ak)",
+        "זווית הפגיעה שווה לזווית ההחזרה",
         "iħ ∂Ψ/∂t = ĤΨ",
         "∇·E = ρ/ε₀"
-    ], 
-    correct: 0 
+    ],
+    correct: 1
 },
-        { question: "עדשה קמורה נקראת גם:", answers: ["עדשה מפזרת", "עדשה מרכזת", "מראה מישורית", "עדשה קעורה"], correct: 1 },
-        { question: "מה קורה למהירות האור במעבר מאוויר למים?", answers: ["גדלה", "קטנה", "לא משתנה", "נעלמת"], correct: 1 },
-        { question: "מראה קעורה היא מראה:", answers: ["מפזרת", "מרכזת", "שקופה", "מישורית"], correct: 1 },
-        { question: "מקדם השבירה של אוויר הוא:", answers: ["0", "1", "2", "תלוי בחומר"], correct: 1 },
-        { question: "כאשר קרן פוגעת בניצב למשטח – זווית השבירה היא:", answers: ["90°", "0°", "45°", "תלויה במקדם"], correct: 1 },
-        { question: "עדשה קעורה היא עדשה:", answers: ["מרכזת", "מפזרת", "מחזירה", "אופטית"], correct: 1 },
-        { question: "מרחק מוקד מסומן באות:", answers: ["f", "d", "n", "v"], correct: 0 },
-        { question: "נוסחת העדשה הדקה היא:", answers: ["1/f = 1/do + 1/di", "e^{ix} = cos(x) + i sin(x)", "ζ(s) = ∑_{n=1}^{∞} 1/n^s", "ℒ{f(t)} = ∫_0^{∞} e^{-st} f(t) dt"], correct: 0 },
-        { question: "תופעת השבירה מתרחשת בגלל שינוי ב:", answers: ["צבע", "מהירות", "אנרגיה", "מסה"], correct: 1 },
-        { question: "קרן פוגעת במראה בזווית של 30°. מהי זווית ההחזרה?", answers: ["30°", "60°", "0°", "15°"], correct: 0 },
-        { question: "קרן פוגעת בזווית 45°. מהי זווית ההחזרה?", answers: ["45°", "90°", "0°", "22.5°"], correct: 0 },
-        { question: "קרן פוגעת בזווית 70°. מהי זווית ההחזרה?", answers: ["20°", "70°", "140°", "35°"], correct: 1 },
-        { question: "זווית ההחזרה תמיד שווה ל:", answers: ["חצי מזווית הפגיעה", "כפול מזווית הפגיעה", "זווית הפגיעה", "0"], correct: 2 },
-        { question: "אם זווית ההחזרה היא 25°, מהי זווית הפגיעה?", answers: ["25°", "50°", "75°", "12.5°"], correct: 0 },
-        { question: "קרן עוברת מאוויר (n=1) למים (n=1.33) בזווית פגיעה 30°. האם הזווית תשבר לכיוון הנורמל?", answers: ["כן", "לא", "לא משתנה", "תלוי בעוצמה"], correct: 0 },
-        { question: "אם n1=1, n2=2 וזווית הפגיעה 30°, זווית השבירה תהיה:", answers: ["גדולה מ-30°", "קטנה מ-30°", "שווה ל-30°", "90°"], correct: 1 },
-        { question: "מעבר מזכוכית לאוויר יגרום לזווית השבירה להיות:", answers: ["קטנה יותר", "גדולה יותר", "0", "שווה"], correct: 1 },
-        { question: "אם זווית הפגיעה היא 0°, זווית השבירה היא:", answers: ["0°", "90°", "45°", "תלויה במקדם"], correct: 0 },
-{ 
-    question: "חוק סנל הוא:", 
+{
+    question: "עדשה קמורה נקראת גם בשם:",
+    answers: ["עדשה מפזרת", "מראה מישורית", "עדשה מרכזת", "עדשה קעורה"],
+    correct: 2
+},
+{
+    question: "מה קורה למהירות האור כאשר הוא עובר מאוויר למים?",
+    answers: ["המהירות גדלה", "המהירות אינה משתנה", "האור נעלם", "המהירות קטנה"],
+    correct: 3
+},
+{
+    question: "מקדם השבירה של אוויר (בקירוב) הוא:",
+    answers: ["0", "2", "1", "תלוי בחומר"],
+    correct: 2
+},
+{
+    question: "כאשר קרן אור פוגעת בניצב למשטח, מהי זווית השבירה?",
+    answers: ["90°", "45°", "0°", "תלויה במקדם השבירה"],
+    correct: 2
+},
+{
+    question: "עדשה קעורה היא עדשה:",
+    answers: ["מפזרת", "מרכזת", "מחזירה אור", "אופטית בלבד"],
+    correct: 0
+},
+{
+    question: "באיזה סימון מקובל להשתמש עבור מרחק מוקד?",
+    answers: ["d", "n", "f", "v"],
+    correct: 2
+},
+{
+    question: "מהי נוסחת העדשה הדקה?",
     answers: [
-        "n1*sinθ1 = n2*sinθ2",
+        "ζ(s) = ∑_{n=1}^{∞} 1/n^s",
+        "1/f = 1/do + 1/di",
+        "e^{ix} = cos(x) + i sin(x)",
+        "ℒ{f(t)} = ∫_0^{∞} e^{-st} f(t) dt"
+    ],
+    correct: 1
+},
+{
+    question: "קרן אור פוגעת במראה בזווית של 30°. מהי זווית ההחזרה?",
+    answers: ["60°", "30°", "0°", "15°"],
+    correct: 1
+},
+{
+    question: "קרן אור פוגעת במראה בזווית של 45°. מהי זווית ההחזרה?",
+    answers: ["90°", "0°", "45°", "22.5°"],
+    correct: 2
+},
+{
+    question: "קרן אור פוגעת במראה בזווית של 70°. מהי זווית ההחזרה?",
+    answers: ["20°", "140°", "35°", "70°"],
+    correct: 3
+},
+{
+    question: "על פי חוק ההחזרה, זווית ההחזרה תמיד שווה ל:",
+    answers: ["חצי מזווית הפגיעה", "זווית הפגיעה", "כפול מזווית הפגיעה", "0"],
+    correct: 1
+},
+{
+    question: "אם זווית ההחזרה היא 25°, מהי זווית הפגיעה?",
+    answers: ["50°", "25°", "75°", "12.5°"],
+    correct: 1
+},
+{
+    question: "קרן אור עוברת מאוויר (n=1) למים (n=1.33) בזווית פגיעה של 30°. מה יקרה לכיוון הקרן?",
+    answers: ["תישבר הרחק מהנורמל", "לא תשתנה", "תישבר לכיוון הנורמל", "תלוי בעוצמת האור"],
+    correct: 2
+},
+{
+    question: "אם n1=1 , n2=2 וזווית הפגיעה היא 30°, זווית השבירה תהיה:",
+    answers: ["גדולה מ-30°", "שווה ל-30°", "קטנה מ-30°", "90°"],
+    correct: 2
+},
+{
+    question: "כאשר אור עובר מזכוכית לאוויר, זווית השבירה תהיה:",
+    answers: ["קטנה יותר מזווית הפגיעה", "0", "גדולה יותר מזווית הפגיעה", "שווה לזווית הפגיעה"],
+    correct: 2
+},
+{
+    question: "אם זווית הפגיעה היא 0°, מה תהיה זווית השבירה?",
+    answers: ["90°", "0°", "45°", "תלויה במקדם השבירה"],
+    correct: 1
+},
+{
+    question: "חוק סנל מתואר על ידי המשוואה:",
+    answers: [
         "∮C f(z) dz = 2πi ∑ Res(f, ak)",
         "iħ ∂Ψ/∂t = -(ħ²/2m)∇²Ψ + VΨ",
+        "n1*sinθ1 = n2*sinθ2",
         "∫_{-∞}^{∞} e^(-x²) dx = √π"
-    ], 
-    correct: 0 
+    ],
+    correct: 2
 },
-        { question: "מוקד של מראה קעורה נמצא:", answers: ["מאחורי המראה", "לפני המראה", "במרכז", "באינסוף"], correct: 1 },
-        { question: "הדמות במראה מישורית היא:", answers: ["אמיתית", "מדומה", "הפוכה", "מוקטנת"], correct: 1 },
-        { question: "מקדם שבירה גדול יותר פירושו:", answers: ["מהירות גדולה יותר", "מהירות קטנה יותר", "אין קשר", "אור חזק יותר"], correct: 1 },
-        { question: "יחידות מרחק מוקד הן:", answers: ["מטר", "שנייה", "ניוטון", "וולט"], correct: 0 },
-        { question: "זווית קריטית מתרחשת כאשר:", answers: ["יש החזרה מלאה", "אין שבירה", "האור נעצר", "יש פיזור"], correct: 0 },
-        { question: "החזרה מלאה מתרחשת כאשר מעבר הוא מ:", answers: ["אוויר למים", "מים לאוויר", "אוויר לריק", "ריק לאוויר"], correct: 1 },
-        { question: "אם n1>n2 אז הקרן תישבר:", answers: ["מהנורמל", "אל הנורמל", "לא תישבר", "תיעלם"], correct: 0 },
-        { question: "דמות אמיתית ניתן להקרין על:", answers: ["מסך", "מראה", "אוויר", "עדשה"], correct: 0 },
-        { question: "במראה מישורית גודל הדמות הוא:", answers: ["קטן יותר", "גדול יותר", "שווה לגוף", "אפס"], correct: 2 },
-        { question: "הנורמל הוא קו:", answers: ["מקביל למשטח", "מאונך למשטח", "אלכסוני", "עקום"], correct: 1 }
+{
+    question: "מוקד של מראה קעורה נמצא:",
+    answers: ["מאחורי המראה", "במרכז המראה", "לפני המראה", "באינסוף"],
+    correct: 2
+},
+{
+    question: "הדמות הנוצרת במראה מישורית היא:",
+    answers: ["אמיתית", "הפוכה", "מדומה", "מוקטנת"],
+    correct: 2
+},
+{
+    question: "מקדם שבירה גדול יותר פירושו:",
+    answers: ["מהירות אור גדולה יותר", "אין קשר למהירות", "האור חזק יותר", "מהירות אור קטנה יותר"],
+    correct: 3
+},
+{
+    question: "מהן יחידות המדידה של מרחק מוקד?",
+    answers: ["שנייה", "ניוטון", "מטר", "וולט"],
+    correct: 2
+},
+{
+    question: "זווית קריטית מתרחשת כאשר:",
+    answers: ["אין שבירה כלל", "מתרחשת החזרה פנימית מלאה", "האור נעצר", "האור מתפזר"],
+    correct: 1
+},
+{
+    question: "אם n1 > n2 הקרן לאחר השבירה תנוע:",
+    answers: ["אל הנורמל", "לא תישבר", "תיעלם", "הרחק מהנורמל"],
+    correct: 3
+},
+{
+    question: "דמות אמיתית ניתן להקרין על:",
+    answers: ["מראה", "אוויר", "מסך", "עדשה"],
+    correct: 2
+},
+{
+    question: "במראה מישורית גודל הדמות הוא:",
+    answers: ["קטן יותר מהעצם", "שווה לגודל העצם", "גדול יותר מהעצם", "אפס"],
+    correct: 1
+},
+{
+    question: "הנורמל למשטח הוא קו:",
+    answers: ["מקביל למשטח", "אלכסוני", "מאונך למשטח", "עקום"],
+    correct: 2
+},
+{
+    question: "קרן אור עוברת מאוויר (n1=1) לזכוכית (n2=1.5) בזווית פגיעה של 30°. מהי בקירוב זווית השבירה?",
+    answers: ["30°", "19°", "45°", "60°"],
+    correct: 1
+},
+{
+    question: "קרן אור פוגעת במראה בזווית של 40°. מהי זווית ההחזרה?",
+    answers: ["20°", "80°", "50°", "40°"],
+    correct: 3
+},
+{
+    question: "קרן אור עוברת מאוויר (n1=1) לזכוכית (n2=1.5). אם זווית השבירה היא 19°, מהי בקירוב זווית הפגיעה?",
+    answers: ["19°", "45°", "30°", "60°"],
+    correct: 2
+},
+{
+    question: "מקדם השבירה של חומר הוא n=1.5. מהי מהירות האור בחומר?",
+    answers: ["2×10^8 m/s", "4.5×10^8 m/s", "3×10^8 m/s", "1×10^8 m/s"],
+    correct: 0
+},
+{
+    question: "מהירות האור בחומר היא 2×10^8 m/s. מהו מקדם השבירה של החומר?",
+    answers: ["1", "1.5", "1.33", "2"],
+    correct: 1
+}
+
     ];
 
     let questions = [];
@@ -149,7 +277,7 @@
     }
 
     function startQuiz() {
-        questions = shuffle([...allQuestions]).slice(0, 30);
+        questions = shuffle([...allQuestions]).slice(0, 32);
         currentQuestion = 0;
         score = 0;
         resultEl.textContent = '';
@@ -164,7 +292,7 @@
     questionEl.textContent = q.question;
     q.answers.forEach((answer, index) => {
         const button = document.createElement('button');
-        button.innerHTML = answer; 
+        button.innerHTML = answer;
         button.addEventListener('click', () => selectAnswer(index));
         answersEl.appendChild(button);
     });
@@ -175,7 +303,6 @@ function loadQuestion() {
     questionEl.textContent = q.question;
     q.answers.forEach((answer, index) => {
         const button = document.createElement('button');
-      
         button.innerHTML = `<span style="direction:ltr; display:inline-block;">${answer}</span>`;
         button.addEventListener('click', () => selectAnswer(index));
         answersEl.appendChild(button);
@@ -187,12 +314,12 @@ function loadQuestion() {
 
     function selectAnswer(index) {
         const correct = questions[currentQuestion].correct;
-        if (index === correct) score++;
+        if (index == correct) score++;
 
         Array.from(answersEl.children).forEach((button, i) => {
             button.disabled = true;
-            if (i === correct) button.style.backgroundColor = 'green';
-            else if (i === index) button.style.backgroundColor = 'red';
+            if (i == correct) button.style.backgroundColor = 'green';
+            else if (i == index) button.style.backgroundColor = 'red';
         });
     }
 
@@ -205,7 +332,7 @@ function loadQuestion() {
     function showResult() {
         questionEl.style.display = 'none';
         nextBtn.style.display = 'none';
-        resultEl.textContent = `הציון שלך: ${score} מתוך 30`;
+        resultEl.textContent = `ציון: ${score} / 32`;
         restartBtn.style.display = 'block';
     }
 
