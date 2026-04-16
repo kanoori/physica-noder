@@ -149,7 +149,7 @@
     }
 
     function startQuiz() {
-        questions = shuffle([...allQuestions]).slice(0, 10);
+        questions = shuffle([...allQuestions]).slice(0, 30);
         currentQuestion = 0;
         score = 0;
         resultEl.textContent = '';
@@ -205,7 +205,7 @@ function loadQuestion() {
     function showResult() {
         questionEl.style.display = 'none';
         nextBtn.style.display = 'none';
-        resultEl.textContent = `הציון שלך: ${score} מתוך 10`;
+        resultEl.textContent = `הציון שלך: ${score} מתוך 30`;
         restartBtn.style.display = 'block';
     }
 
